@@ -5,7 +5,7 @@ import { CookieWrapper } from "../styles";
 
 const CookieItem = (props) => {
   return (
-    <CookieWrapper>
+    <CookieWrapper onClick={() => props.setCookie(props.cookieObject)}>
       <img src={props.cookieObject.image} alt={props.cookieObject.name} />
       <p>{props.cookieObject.name}</p>
       <p className="cookie-price">{props.cookieObject.price} KD</p>

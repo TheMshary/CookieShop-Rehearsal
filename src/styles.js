@@ -55,6 +55,22 @@ const CookieWrapper = styled.div`
   }
 `;
 
+const DetailWrapper = styled.div`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+
+  img {
+    width: 40%;
+    float: left;
+  }
+
+  p {
+    vertical-align: middle;
+  }
+`;
+
 const SearchBarStyled = styled.input`
   display: block;
   width: 40%;
@@ -62,4 +78,13 @@ const SearchBarStyled = styled.input`
   padding: 0.5rem;
 `;
 
-export { GlobalStyle, ThemeButton, Title, Description, ShopImage, ListWrapper, CookieWrapper, SearchBarStyled };
+const GoBackButton = styled.button`
+  font-size: 1em;
+  margin: 1.25em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  background-color: ${props => props.theme.backgroundColor};
+  color: ${props => props.theme.mainColor};
+`;
+
+export { GlobalStyle, ThemeButton, Title, Description, ShopImage, ListWrapper, CookieWrapper, DetailWrapper, SearchBarStyled, GoBackButton };
