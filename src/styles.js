@@ -55,4 +55,11 @@ const CookieWrapper = styled.div`
   }
 `;
 
-export { GlobalStyle, ThemeButton, Title, Description, ShopImage, ListWrapper, CookieWrapper };
+const SearchBarStyled = styled.input`
+  display: block;
+  width: 40%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+`;
+
+export { GlobalStyle, ThemeButton, Title, Description, ShopImage, ListWrapper, CookieWrapper, SearchBarStyled };
