@@ -87,4 +87,8 @@ const GoBackButton = styled.button`
   color: ${props => props.theme.mainColor};
 `;
 
-export { GlobalStyle, ThemeButton, Title, Description, ShopImage, ListWrapper, CookieWrapper, DetailWrapper, SearchBarStyled, GoBackButton };
+const DeleteButtonStyled = styled.p`
+  color: ${props => props.theme.red};
+`;
+
+export { GlobalStyle, ThemeButton, Title, Description, ShopImage, ListWrapper, CookieWrapper, DetailWrapper, SearchBarStyled, GoBackButton, DeleteButtonStyled };

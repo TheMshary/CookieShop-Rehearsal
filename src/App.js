@@ -15,12 +15,14 @@ const theme = {
   light: {
     mainColor: "#242424",
     backgroundColor: "#fefafb",
-    pink: "#ff85a2"
+    pink: "#ff85a2",
+    red: "#ff3232"
   },
   dark: {
     mainColor: "#fefafb",
     backgroundColor: "#242424",
-    pink: "#ff85a2"
+    pink: "#ff85a2",
+    red: "#ff3232"
   }
 }
 
@@ -28,11 +30,11 @@ function App() {
   // const [VARIABLE, FUNCTION] = useState(INITIAL_VALUE);
   const [currentTheme, setCurrentTheme] = useState("light");
   const [cookie, setCookie] = useState(null);
+  const [_cookies, setCookies] = useState(cookies);
 
-  // if cookie is null
-  //   then display the cookie list
-  // otherwise
-  //   display the cookie's detail page
+  const deleteCookie = cookieId => {
+    setCookies(_cookies.filter(cookie => cookie.id !== cookieId))
+  }
 
   const toggleTheme = () => setCurrentTheme(currentTheme === "light" ? "dark" : "light");
 
@@ -47,7 +49,7 @@ function App() {
         <Description>Where cookie maniax gather</Description>
         <ShopImage src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg" alt="cookie shop" />
       </div>
-      {cookie === null ? <CookieList setCookie={setCookie} /> : <CookieDetail cookie={cookie} setCookie={setCookie} />}
+      {cookie === null ? <CookieList setCookie={setCookie} cookies={_cookies} deleteCookie={deleteCookie} /> : <CookieDetail cookie={cookie} setCookie={setCookie} />}
     </ThemeProvider>
   );
 }
