@@ -1,13 +1,14 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
 
 // Styles
 import { DetailWrapper, GoBackButton } from '../styles';
 
 const CookieDetail = (props) => {
-  const cookie = props.cookie;
+  const { cookieId } = useParams();
+  const cookie = props.cookies.find(cookie => cookie.id === +cookieId);
   return (
     <>
-      <GoBackButton onClick={() => props.setCookie(null)}>{"<"} Cookie List</GoBackButton>
       <DetailWrapper>
         <h1>{cookie.name}</h1>
         <img src={cookie.image} alt={cookie.name} />

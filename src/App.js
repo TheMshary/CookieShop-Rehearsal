@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
 
 // Styles
-import { GlobalStyle, ThemeButton, Title, Description, ShopImage } from "./styles";
+import { GlobalStyle, ThemeButton } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 // Components
 import CookieList from "./components/CookieList";
 import CookieDetail from './components/CookieDetail';
+import Home from './components/Home';
 
 // Data
 import cookies from './cookies';
@@ -44,12 +47,20 @@ function App() {
       <ThemeButton onClick={toggleTheme}>
         {currentTheme === "light" ? "Dark" : "Light"} Mode
       </ThemeButton>
-      <div>
-        <Title>Cookies and Beyond</Title>
-        <Description>Where cookie maniax gather</Description>
-        <ShopImage src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg" alt="cookie shop" />
-      </div>
-      {cookie === null ? <CookieList setCookie={setCookie} cookies={_cookies} deleteCookie={deleteCookie} /> : <CookieDetail cookie={cookie} setCookie={setCookie} />}
+      <Link to="/" style={{ margin: 10 }}>Home</Link>
+      <Link to="/cookies" style={{ margin: 10 }}>Cookies</Link>
+      <Switch>
+        <Route path="/cookies/:cookieId">
+          <CookieDetail cookies={_cookies} setCookie={setCookie} />
+        </Route>
+        <Route path="/cookies">
+          <CookieList setCookie={setCookie} cookies={_cookies} deleteCookie={deleteCookie} />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+      {/* {cookie === null ? <CookieList setCookie={setCookie} cookies={_cookies} deleteCookie={deleteCookie} /> : <CookieDetail cookie={cookie} setCookie={setCookie} />} */}
     </ThemeProvider>
   );
 }
