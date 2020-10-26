@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+
+// Routes
 import { Route, Switch } from 'react-router';
-import { Link } from 'react-router-dom';
 
 // Styles
-import { GlobalStyle, ThemeButton } from "./styles";
+import { GlobalStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 // Components
 import CookieList from "./components/CookieList";
 import CookieDetail from './components/CookieDetail';
 import Home from './components/Home';
+import NavBar from './components/NavBar';
 
 // Data
 import cookies from './cookies';
@@ -30,9 +32,7 @@ const theme = {
 }
 
 function App() {
-  // const [VARIABLE, FUNCTION] = useState(INITIAL_VALUE);
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [cookie, setCookie] = useState(null);
   const [_cookies, setCookies] = useState(cookies);
 
   const deleteCookie = cookieId => {
@@ -44,23 +44,18 @@ function App() {
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
-      <ThemeButton onClick={toggleTheme}>
-        {currentTheme === "light" ? "Dark" : "Light"} Mode
-      </ThemeButton>
-      <Link to="/" style={{ margin: 10 }}>Home</Link>
-      <Link to="/cookies" style={{ margin: 10 }}>Cookies</Link>
+      <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
       <Switch>
-        <Route path="/cookies/:cookieId">
-          <CookieDetail cookies={_cookies} setCookie={setCookie} />
+        <Route path="/cookies/:cookieSlug">
+          <CookieDetail cookies={_cookies} />
         </Route>
         <Route path="/cookies">
-          <CookieList setCookie={setCookie} cookies={_cookies} deleteCookie={deleteCookie} />
+          <CookieList cookies={_cookies} deleteCookie={deleteCookie} />
         </Route>
         <Route exact path="/">
           <Home />
         </Route>
       </Switch>
-      {/* {cookie === null ? <CookieList setCookie={setCookie} cookies={_cookies} deleteCookie={deleteCookie} /> : <CookieDetail cookie={cookie} setCookie={setCookie} />} */}
     </ThemeProvider>
   );
 }

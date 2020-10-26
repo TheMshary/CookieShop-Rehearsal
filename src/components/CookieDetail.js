@@ -1,12 +1,13 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 // Styles
-import { DetailWrapper, GoBackButton } from '../styles';
+import { DetailWrapper } from '../styles';
 
 const CookieDetail = (props) => {
-  const { cookieId } = useParams();
-  const cookie = props.cookies.find(cookie => cookie.id === +cookieId);
+  const { cookieSlug } = useParams();
+  const cookie = props.cookies.find(cookie => cookie.slug === cookieSlug);
+  if (!cookie) return <Redirect to="/cookies/" />
   return (
     <>
       <DetailWrapper>

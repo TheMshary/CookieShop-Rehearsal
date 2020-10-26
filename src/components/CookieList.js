@@ -7,17 +7,18 @@ import { ListWrapper } from "../styles";
 import CookieItem from './CookieItem';
 import SearchBar from './SearchBar';
 
-const CookieList = (props) => {
+const CookieList = ({ cookies, setCookie, deleteCookie }) => {
   const [query, setQuery] = useState("");
 
-  const filteredCookies = props.cookies.filter(cookie => cookie.name.toLowerCase().includes(query.toLowerCase()))
+  const filteredCookies = cookies.filter(cookie => cookie.name.toLowerCase().includes(query.toLowerCase()))
   const cookieList = filteredCookies.map(cookie => (
-    <CookieItem cookieObject={cookie} setCookie={props.setCookie} deleteCookie={props.deleteCookie} key={cookie.id} />
+    <CookieItem cookie={cookie} setCookie={setCookie} deleteCookie={deleteCookie} key={cookie.id} />
   ))
+
   return (
-    <div>
+    <div className="container">
       <SearchBar setQuery={setQuery} />
-      <ListWrapper>
+      <ListWrapper className="row">
         {cookieList}
       </ListWrapper>
     </div>

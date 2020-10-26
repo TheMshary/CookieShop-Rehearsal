@@ -1,46 +1,65 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Link, NavLink } from "react-router-dom";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   body {
     color: ${props => props.theme.mainColor};
     background-color: ${props => props.theme.backgroundColor};
   }
 `;
 
-const ThemeButton = styled.button`
+export const NavStyled = styled.nav`
+  background-color: ${props => props.theme.backgroundColor};
+`;
+
+export const NavItem = styled(NavLink)`
+  padding: 0.25em 1em;
+  color: ${props => props.theme.mainColor};
+
+  &.active {
+    color: ${props => props.theme.pink};
+  }
+`;
+
+export const Logo = styled(Link)`
+  padding: 0.75em;
+
+  img {
+    width: 8rem;
+  }
+`;
+
+export const ThemeButton = styled.button`
   font-size: 1em;
-  margin: 1.25em;
   padding: 0.25em 1em;
   border-radius: 3px;
   background-color: ${props => props.theme.backgroundColor};
   color: ${props => props.theme.mainColor};
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   text-align: center;
   color: purple;
 `;
 
-const Description = styled.h4`
+export const Description = styled.h4`
   text-align: center;
 `;
 
-const ShopImage = styled.img`
+export const ShopImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 `;
 
-const ListWrapper = styled.div`
+export const ListWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const CookieWrapper = styled.div`
-  margin: 20px;
-
+export const CookieWrapper = styled.div`
   img {
     width: 200px;
     height: 200px;
@@ -55,7 +74,7 @@ const CookieWrapper = styled.div`
   }
 `;
 
-const DetailWrapper = styled.div`
+export const DetailWrapper = styled.div`
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -71,14 +90,14 @@ const DetailWrapper = styled.div`
   }
 `;
 
-const SearchBarStyled = styled.input`
+export const SearchBarStyled = styled.input`
   display: block;
   width: 40%;
   margin: 1rem auto;
   padding: 0.5rem;
 `;
 
-const GoBackButton = styled.button`
+export const GoBackButton = styled.button`
   font-size: 1em;
   margin: 1.25em;
   padding: 0.25em 1em;
@@ -87,8 +106,6 @@ const GoBackButton = styled.button`
   color: ${props => props.theme.mainColor};
 `;
 
-const DeleteButtonStyled = styled.p`
+export const DeleteButtonStyled = styled.p`
   color: ${props => props.theme.red};
 `;
-
-export { GlobalStyle, ThemeButton, Title, Description, ShopImage, ListWrapper, CookieWrapper, DetailWrapper, SearchBarStyled, GoBackButton, DeleteButtonStyled };

@@ -7,16 +7,15 @@ import { CookieWrapper } from "../styles";
 // Components
 import DeleteButton from './buttons/DeleteButton';
 
-const CookieItem = (props) => {
-
+const CookieItem = ({ cookie, deleteCookie }) => {
   return (
-    <CookieWrapper>
-      <Link to={`/cookies/${props.cookieObject.id}`}>
-        <img src={props.cookieObject.image} alt={props.cookieObject.name} />
+    <CookieWrapper className="col-lg-3 col-md-4 col-sm-6">
+      <Link to={`/cookies/${cookie.slug}`} className="d-flex justify-content-center">
+        <img src={cookie.image} alt={cookie.name} />
       </Link>
-      <p>{props.cookieObject.name}</p>
-      <p className="cookie-price">{props.cookieObject.price} KD</p>
-      <DeleteButton deleteCookie={props.deleteCookie} cookie={props.cookieObject} />
+      <p>{cookie.name}</p>
+      <p className="cookie-price">{cookie.price} KD</p>
+      <DeleteButton deleteCookie={deleteCookie} cookie={cookie} />
     </CookieWrapper>
   )
 }
