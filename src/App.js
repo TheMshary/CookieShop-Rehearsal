@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import slugify from 'react-slugify';
 
 // Routes
 import { Route, Switch } from 'react-router';
@@ -39,6 +40,12 @@ function App() {
     setCookies(_cookies.filter(cookie => cookie.id !== cookieId))
   }
 
+  const createCookie = cookie => {
+    cookie.id = _cookies[_cookies.length - 1].id + 1;
+    cookie.slug = slugify(cookie.name);
+    setCookies([..._cookies, cookie]);
+  }
+
   const toggleTheme = () => setCurrentTheme(currentTheme === "light" ? "dark" : "light");
 
   return (
@@ -50,7 +57,7 @@ function App() {
           <CookieDetail cookies={_cookies} />
         </Route>
         <Route path="/cookies">
-          <CookieList cookies={_cookies} deleteCookie={deleteCookie} />
+          <CookieList cookies={_cookies} deleteCookie={deleteCookie} createCookie={createCookie} />
         </Route>
         <Route exact path="/">
           <Home />

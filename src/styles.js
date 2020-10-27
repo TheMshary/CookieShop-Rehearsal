@@ -8,6 +8,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+export const CreateButtonStyled = styled.button`
+  color: ${(props) => props.theme.backgroundColor};
+  background-color: ${(props) => props.theme.mainColor};
+
+  &:hover {
+    color: ${(props) => props.theme.mainColor};
+    background-color: ${(props) => props.theme.backgroundColor};
+  }
+`;
+
 export const NavStyled = styled.nav`
   background-color: ${props => props.theme.backgroundColor};
 `;
