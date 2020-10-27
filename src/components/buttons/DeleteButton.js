@@ -1,10 +1,13 @@
 import React from 'react'
 
+// Stores
+import cookieStore from '../../stores/cookieStore';
+
 // Styles
 import { DeleteButtonStyled } from "../../styles";
 
-const DeleteButton = (props) => {
-  const handleDelete = () => props.deleteCookie(props.cookie.id)
+const DeleteButton = ({ cookie }) => {
+  const handleDelete = () => cookieStore.deleteCookie(cookie.id)
   return (
     <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
   )

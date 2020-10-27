@@ -1,12 +1,13 @@
 import React from 'react'
 import { useParams, Redirect } from 'react-router-dom';
+import cookieStore from '../stores/cookieStore';
 
 // Styles
 import { DetailWrapper } from '../styles';
 
-const CookieDetail = (props) => {
+const CookieDetail = () => {
   const { cookieSlug } = useParams();
-  const cookie = props.cookies.find(cookie => cookie.slug === cookieSlug);
+  const cookie = cookieStore.cookies.find(cookie => cookie.slug === cookieSlug);
   if (!cookie) return <Redirect to="/cookies/" />
   return (
     <>

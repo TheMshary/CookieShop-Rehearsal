@@ -4,12 +4,15 @@ import Modal from 'react-modal';
 // Styles
 import { CreateButtonStyled } from '../../styles';
 
-const CookieModal = ({ isOpen, closeModal, createCookie }) => {
+// Stores
+import cookieStore from '../../stores/cookieStore';
+
+const CookieModal = ({ isOpen, closeModal }) => {
   const [cookie, setCookie] = useState({
-    name: "",
-    price: 0,
-    description: "",
-    image: "",
+    name: "pikapika",
+    price: 45,
+    description: "pika cewkies",
+    image: "https://i.pinimg.com/originals/8f/78/ab/8f78ab54190cb6d879cd4b8ff578cf0e.jpg",
   })
 
   const handleChange = event => {
@@ -18,7 +21,7 @@ const CookieModal = ({ isOpen, closeModal, createCookie }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    createCookie(cookie);
+    cookieStore.createCookie(cookie);
     closeModal();
   }
 
