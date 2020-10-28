@@ -40,6 +40,10 @@ export const ThemeButton = styled.button`
   color: ${props => props.theme.mainColor};
 `;
 
+export const UpdateButtonStyled = styled.p`
+  color: ${(props) => props.theme.pink};
+`;
+
 /************************** WRAPPERS **************************/
 export const ListWrapper = styled.div`
   display: flex;

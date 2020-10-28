@@ -6,6 +6,7 @@ import { CookieWrapper } from "../styles";
 
 // Components
 import DeleteButton from './buttons/DeleteButton';
+import UpdateButton from './buttons/UpdateButton';
 
 const CookieItem = ({ cookie, deleteCookie }) => {
   return (
@@ -15,6 +16,7 @@ const CookieItem = ({ cookie, deleteCookie }) => {
       </Link>
       <p>{cookie.name}</p>
       <p className="cookie-price">{cookie.price} KD</p>
+      <UpdateButton cookie={cookie} />
       <DeleteButton deleteCookie={deleteCookie} cookie={cookie} />
     </CookieWrapper>
   )

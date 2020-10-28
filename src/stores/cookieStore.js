@@ -12,6 +12,7 @@ class CookieStore {
     makeObservable(this, {
       cookies: observable,
       createCookie: action,
+      updateCookie: action,
       deleteCookie: action,
     })
   }
@@ -20,6 +21,12 @@ class CookieStore {
     cookie.id = this.cookies[this.cookies.length - 1].id + 1;
     cookie.slug = slugify(cookie.name);
     this.cookies.push(cookie)
+  }
+
+  updateCookie = updatedCookie => {
+    const cookie = this.cookies.find(cookie => cookie.id === updatedCookie.id);
+    for (const key in cookie) cookie[key] = updatedCookie[key];
+    cookie.slug = slugify(cookie.name);
   }
 
   deleteCookie = cookieId => {
