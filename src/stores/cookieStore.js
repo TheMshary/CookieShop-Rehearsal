@@ -1,20 +1,28 @@
 import { makeObservable, observable, action } from 'mobx';
 import slugify from 'react-slugify';
+import axios from 'axios';
 
-// Data
-import cookies from '../cookies';
-
-// PascalCase
 class CookieStore {
-  cookies = cookies;
+  cookies = [];
 
   constructor() {
     makeObservable(this, {
       cookies: observable,
+      fetchCookies: action,
       createCookie: action,
       updateCookie: action,
       deleteCookie: action,
     })
+  }
+
+  // async/await
+  fetchCookies = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/cookies");
+      this.cookies = response.data;
+    } catch (error) {
+      console.error("CookieStore -> fetchCookies -> error", error)
+    }
   }
 
   createCookie = cookie => {
@@ -37,4 +45,5 @@ class CookieStore {
 
 
 const cookieStore = new CookieStore();
+cookieStore.fetchCookies();
 export default cookieStore;
