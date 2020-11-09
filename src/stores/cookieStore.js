@@ -44,12 +44,15 @@ class CookieStore {
     cookie.slug = slugify(cookie.name);
   }
 
-  deleteCookie = cookieId => {
-    this.cookies = this.cookies.filter(cookie => cookie.id !== cookieId)
+  deleteCookie = async cookieId => {
+    try {
+      await axios.delete(`http://localhost:8000/cookies/${cookieId}`);
+      this.cookies = this.cookies.filter(cookie => cookie.id !== cookieId);
+    } catch (error) {
+      console.error("CookieStore -> error", error)
+    }
   }
 }
-
-
 
 const cookieStore = new CookieStore();
 cookieStore.fetchCookies();
