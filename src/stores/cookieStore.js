@@ -25,10 +25,17 @@ class CookieStore {
     }
   }
 
-  createCookie = cookie => {
-    cookie.id = this.cookies[this.cookies.length - 1].id + 1;
-    cookie.slug = slugify(cookie.name);
-    this.cookies.push(cookie)
+  createCookie = async cookie => {
+    // cookie.id = this.cookies[this.cookies.length - 1].id + 1;
+    // cookie.slug = slugify(cookie.name);
+    // this.cookies.push(cookie)
+    try {
+      const response = await axios.post("http://localhost:8000/cookies", cookie);
+      console.log("CookieStore -> response", response)
+      this.cookies.push(response.data);
+    } catch (error) {
+      console.error("CookieStore -> error", error)
+    }
   }
 
   updateCookie = updatedCookie => {
