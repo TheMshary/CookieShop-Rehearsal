@@ -38,10 +38,15 @@ class CookieStore {
     }
   }
 
-  updateCookie = updatedCookie => {
-    const cookie = this.cookies.find(cookie => cookie.id === updatedCookie.id);
-    for (const key in cookie) cookie[key] = updatedCookie[key];
-    cookie.slug = slugify(cookie.name);
+  updateCookie = async updatedCookie => {
+    try {
+      updatedCookie.slug = slugify(updatedCookie.name);
+      await axios.put(`http://localhost:8000/cookies/${updatedCookie.id}`, updatedCookie);
+      const cookie = this.cookies.find(cookie => cookie.id === updatedCookie.id);
+      for (const key in cookie) cookie[key] = updatedCookie[key];
+    } catch (error) {
+      console.error("CookieStore -> error", error)
+    }
   }
 
   deleteCookie = async cookieId => {
